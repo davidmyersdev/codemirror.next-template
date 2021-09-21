@@ -1,8 +1,20 @@
-import './style.css'
+import { basicSetup, EditorState, EditorView } from "@codemirror/basic-setup"
 
-const app = document.querySelector<HTMLDivElement>('#app')!
+const app = document.getElementById('app')
+const initial = [
+  'Hello, World',
+  '',
+  'How are you doing?',
+].join('\n')
 
-app.innerHTML = `
-  <h1>Hello Vite!</h1>
-  <a href="https://vitejs.dev/guide/features.html" target="_blank">Documentation</a>
-`
+if (app) {
+  new EditorView({
+    state: EditorState.create({
+      doc: initial,
+      extensions: [
+        basicSetup,
+      ]
+    }),
+    parent: app,
+  })
+}
